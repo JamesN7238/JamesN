@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>James Nanas' Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -13,7 +13,7 @@
     <p>Scroll down to explore my work</p>
   </header>
 
-  <section class="section fusion">
+  <section class="section fusion" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/40/Autodesk_Fusion_360_logo.svg');">
     <div class="panel">
       <div class="panel-content">
         <h2>Fusion 360</h2>
@@ -23,7 +23,7 @@
     </div>
   </section>
 
-  <section class="section onshape">
+  <section class="section onshape" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Onshape_logo.svg');">
     <div class="panel">
       <div class="panel-content">
         <h2>OnShape</h2>
@@ -33,7 +33,7 @@
     </div>
   </section>
 
-  <section class="section coding">
+  <section class="section coding" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');">
     <div class="panel">
       <div class="panel-content">
         <h2>Coding</h2>
@@ -43,7 +43,7 @@
     </div>
   </section>
 
-  <section class="section about">
+  <section class="section about" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/User_font_awesome.svg');">
     <div class="panel">
       <div class="panel-content">
         <h2>About Me</h2>
@@ -57,39 +57,6 @@
     © 2025 James Nanas · Built with ❤️ using GitHub Pages
   </footer>
 
-  <script>
-    const sections = document.querySelectorAll('.section');
-
-    window.addEventListener('scroll', () => {
-      const viewportHeight = window.innerHeight;
-
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const sectionHeight = rect.height;
-
-        let progress = 0;
-
-        if (rect.top < viewportHeight && rect.bottom > 0) {
-          progress = (viewportHeight - rect.top) / (viewportHeight + sectionHeight);
-          progress = Math.min(Math.max(progress, 0), 1);
-        }
-
-        const panel = section.querySelector('.panel');
-        panel.style.width = (progress * 100) + '%';
-
-        const content = section.querySelector('.panel-content');
-        if (progress > 0.2) {
-          content.style.opacity = 1;
-          content.style.transform = 'translateY(0)';
-        } else {
-          content.style.opacity = 0;
-          content.style.transform = 'translateY(20px)';
-        }
-      });
-    });
-
-    window.dispatchEvent(new Event('scroll'));
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
