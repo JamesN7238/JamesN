@@ -48,41 +48,13 @@
       height: 100vh;
       scroll-snap-align: start;
       position: relative;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    /* Background logos with low opacity & grayscale */
-    .section.fusion {
-      background-image: url('fusion-logo.png');
-      filter: grayscale(100%);
-      opacity: 0.1;
-    }
-
-    .section.onshape {
-      background-image: url('onshape-logo.png');
-      filter: grayscale(100%);
-      opacity: 0.1;
-    }
-
-    .section.coding {
-      background-image: url('python-logo.png');
-      filter: grayscale(100%);
-      opacity: 0.1;
-    }
-
-    .section.about {
-      background-image: url('about-logo.png');
-      filter: grayscale(100%);
-      opacity: 0.1;
-    }
-
-    /* To ensure background logo doesn’t affect panel or text, we use a pseudo-element */
+    /* Background logos with low opacity & grayscale using ::before pseudo */
     .section::before {
       content: "";
       position: absolute;
@@ -97,19 +69,19 @@
     }
 
     .section.fusion::before {
-      background-image: url('fusion-logo.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Fusion360_logo.svg');
     }
 
     .section.onshape::before {
-      background-image: url('onshape-logo.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/10/Onshape_logo.svg');
     }
 
     .section.coding::before {
-      background-image: url('python-logo.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');
     }
 
     .section.about::before {
-      background-image: url('about-logo.png');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png');
     }
 
     .panel {
