@@ -65,11 +65,11 @@ header p {
 }
 
 .section.fusion::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Fusion360_logo.svg');
+  background-image: url('https://avatars.githubusercontent.com/u/11999539?s=280&v=4');
 }
 
 .section.onshape::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/10/Onshape_logo.svg');
+  background-image: url('https://us.v-cdn.net/5022071/uploads/V3B85DTZQS8W/box-onshape-favicon-512-401x.png');
 }
 
 .section.coding::before {
@@ -89,7 +89,7 @@ header p {
   position: relative; /* above the ::before background */
   left: 0;
   top: 0;
-  transition: width 1s ease;
+  transition: width 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,23 +97,15 @@ header p {
   padding: 2rem;
   text-align: center;
   z-index: 1;
+  white-space: normal;
 }
 
 /* Panel content fade and slide */
 .panel-content {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   max-width: 600px;
-}
-
-.section.active .panel {
-  width: 100%;
-}
-
-.section.active .panel-content {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Panel text and links */
