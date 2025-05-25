@@ -11,12 +11,8 @@
       padding: 0;
     }
 
-    html, body {
-      height: 100%;
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
       background-color: #fff;
       color: #222;
     }
@@ -25,7 +21,10 @@
       background-color: #c62828;
       color: white;
       text-align: center;
-      padding: 4rem 1.5rem;
+      padding: 3rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     header h1 {
@@ -34,38 +33,33 @@
     }
 
     header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
-    section {
-      height: 100vh;
-      scroll-snap-align: start;
-      position: relative;
+    .section {
+      min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 1rem;
+      justify-content: flex-start;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
     }
 
     .panel {
-      position: absolute;
-      left: -100%;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      max-width: 600px;
       background-color: #c62828;
       color: white;
       padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      transition: left 1s ease;
+      max-width: 500px;
       border-radius: 0 16px 16px 0;
+      transform: translateX(-100%);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
     }
 
-    section.active .panel {
-      left: 0;
+    .section.active .panel {
+      transform: translateX(0);
+      opacity: 1;
     }
 
     .panel h2 {
@@ -85,10 +79,8 @@
       padding: 0.75rem 1.25rem;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
       border-radius: 8px;
       transition: background-color 0.3s;
-      width: fit-content;
     }
 
     .panel a:hover {
@@ -104,43 +96,21 @@
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
+      .section {
+        justify-content: center;
       }
 
       .panel {
-        padding: 1.5rem;
-        border-radius: 0 12px 12px 0;
+        border-radius: 16px;
+        transform: translateY(50px);
+      }
+
+      .section.active .panel {
+        transform: translateY(0);
       }
 
       .panel h2 {
-        font-size: 1.7rem;
-      }
-
-      .panel p, .panel a {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      .panel {
-        padding: 1rem;
-      }
-
-      .panel h2 {
-        font-size: 1.5rem;
-      }
-
-      .panel p {
-        font-size: 0.95rem;
-      }
-
-      .panel a {
-        font-size: 0.95rem;
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -152,7 +122,7 @@
     <p>Scroll down to explore my work</p>
   </header>
 
-  <section id="fusion360">
+  <section class="section">
     <div class="panel">
       <h2>Fusion 360</h2>
       <p>3D CAD/CAM software for product design & engineering</p>
@@ -160,7 +130,7 @@
     </div>
   </section>
 
-  <section id="onshape">
+  <section class="section">
     <div class="panel">
       <h2>OnShape</h2>
       <p>Cloud-native CAD with real-time collaboration tools</p>
@@ -168,7 +138,7 @@
     </div>
   </section>
 
-  <section id="coding">
+  <section class="section">
     <div class="panel">
       <h2>Coding</h2>
       <p>Python, AI, embedded systems, and automation projects</p>
@@ -176,7 +146,7 @@
     </div>
   </section>
 
-  <section id="about">
+  <section class="section">
     <div class="panel">
       <h2>About Me</h2>
       <p>Get to know more about my background and goals</p>
@@ -189,14 +159,19 @@
   </footer>
 
   <script>
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('.section');
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
         }
       });
-    }, { threshold: 0.5 });
+    }, {
+      threshold: 0.3
+    });
 
     sections.forEach(section => observer.observe(section));
   </script>
