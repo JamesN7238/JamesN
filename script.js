@@ -1,28 +1,31 @@
-const progressBar = document.getElementById('scroll-progress');
 const sections = document.querySelectorAll('.section');
 
 window.addEventListener('scroll', () => {
-  // Calculate total scroll progress of the page (0 to 1)
-  const scrollTop = window.scrollY || window.pageYOffset;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = Math.min(scrollTop / docHeight, 1);
+  const scrollY = window.scrollY || window.pageYOffset;
+  const viewportHeight = window.innerHeight;
 
-  // Update progress bar width based on total scroll progress
-  progressBar.style.width = (scrollPercent * 100) + '%';
-
-  // For each section: fade in panel content when section is mostly visible
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
-    const content = section.querySelector('.panel-content');
+    const panel = section.querySelector('.panel');
 
-    // When section top is between 0 and 60% of viewport height — show content
-    if (rect.top >= 0 && rect.top < window.innerHeight * 0.6) {
-      content.classList.add('visible');
+    // How far top of section is from viewport top
+    const top = rect.top;
+
+    // Calculate scroll progress within this section (0 to 1)
+    // When top = viewportHeight => progress = 0 (just below viewport)
+    // When top = 0 => progress = 1 (top aligned with viewport top)
+    // When top < 0 (section scrolled past top), progress > 1, clamp to 1 max
+    let progress = 1 - top / viewportHeight;
+    progress = Math.min(Math.max(progress, 0), 1); // clamp 0..1
+
+    // Set panel width to progress * 100%
+    panel.style.width = (progress * 100) + '%';
+
+    // Toggle panel-content visibility based on progress threshold
+    if (progress > 0.1) {
+      section.classList.add('active');
     } else {
-      content.classList.remove('visible');
+      section.classList.remove('active');
     }
   });
 });
-
-// Trigger once on load
-window.dispatchEvent(new Event('scroll'));
