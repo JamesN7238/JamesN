@@ -13,10 +13,28 @@
 
     html, body {
       height: 100%;
-      scroll-behavior: smooth;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-y: scroll;
+      scroll-behavior: smooth;
+      overflow-y: auto;
       scroll-snap-type: y mandatory;
+      background-color: #fff;
+      color: #222;
+    }
+
+    header {
+      background-color: #c62828;
+      color: white;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
     }
 
     section {
@@ -26,38 +44,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #fff;
-      color: #222;
-    }
-
-    header {
-      background-color: #c62828;
-      color: white;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
+      padding: 1rem;
     }
 
     .panel {
       position: absolute;
       left: -100%;
+      top: 0;
       height: 100%;
-      width: 50%;
+      width: 100%;
+      max-width: 600px;
       background-color: #c62828;
-      transition: left 1s ease;
+      color: white;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-left: 2rem;
-      color: white;
+      transition: left 1s ease;
+      border-radius: 0 16px 16px 0;
     }
 
     section.active .panel {
@@ -65,20 +69,26 @@
     }
 
     .panel h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
+    }
+
+    .panel p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .panel a {
       display: inline-block;
       background-color: white;
       color: #c62828;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 1.25rem;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1rem;
       border-radius: 8px;
       transition: background-color 0.3s;
-      margin-top: 1rem;
+      width: fit-content;
     }
 
     .panel a:hover {
@@ -91,6 +101,47 @@
       color: #777;
       padding: 2rem 1rem;
       background: #f5f5f5;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .panel {
+        padding: 1.5rem;
+        border-radius: 0 12px 12px 0;
+      }
+
+      .panel h2 {
+        font-size: 1.7rem;
+      }
+
+      .panel p, .panel a {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .panel {
+        padding: 1rem;
+      }
+
+      .panel h2 {
+        font-size: 1.5rem;
+      }
+
+      .panel p {
+        font-size: 0.95rem;
+      }
+
+      .panel a {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
@@ -112,7 +163,7 @@
   <section id="onshape">
     <div class="panel">
       <h2>OnShape</h2>
-      <p>Cloud-native CAD with collaboration tools</p>
+      <p>Cloud-native CAD with real-time collaboration tools</p>
       <a href="onshape.html">View Project</a>
     </div>
   </section>
@@ -120,7 +171,7 @@
   <section id="coding">
     <div class="panel">
       <h2>Coding</h2>
-      <p>Python, AI, embedded systems, and more</p>
+      <p>Python, AI, embedded systems, and automation projects</p>
       <a href="programming.html">View Project</a>
     </div>
   </section>
@@ -128,7 +179,7 @@
   <section id="about">
     <div class="panel">
       <h2>About Me</h2>
-      <p>Learn more about my background and goals</p>
+      <p>Get to know more about my background and goals</p>
       <a href="about.html">View Page</a>
     </div>
   </section>
@@ -139,23 +190,15 @@
 
   <script>
     const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
-      {
-        threshold: 0.5
-      }
-    );
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
   </script>
 
 </body>
