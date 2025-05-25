@@ -1,5 +1,3 @@
-// This script assumes each .section has a .panel inside it
-
 function updatePanelsOnScroll() {
   const sections = document.querySelectorAll('.section');
   const windowHeight = window.innerHeight;
@@ -9,7 +7,6 @@ function updatePanelsOnScroll() {
     const panel = section.querySelector('.panel');
 
     if (rect.top < windowHeight && rect.bottom > 0) {
-      // Section is in view
       const sectionHeight = rect.height;
       const visibleTop = Math.max(0, -rect.top);
       const visibleBottom = Math.min(sectionHeight, windowHeight - rect.top);
@@ -17,7 +14,6 @@ function updatePanelsOnScroll() {
       const percent = Math.max(0, Math.min(1, visibleBottom / sectionHeight));
       panel.style.width = (percent * 100) + '%';
     } else {
-      // Section is not in view
       panel.style.width = '0%';
     }
   });
