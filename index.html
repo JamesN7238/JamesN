@@ -2,165 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>James Nanas' Portfolio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      background-color: #fff;
-      color: #222;
-    }
-
-    body {
-      background: url('7cef05b1-a9ad-4459-adfa-248c3c84b3d9.png') center center / contain no-repeat fixed;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background-color: #c62828;
-      color: white;
-      text-align: center;
-      padding: 3rem 1.5rem;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-    }
-
-    .section {
-      height: 100vh;
-      scroll-snap-align: start;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* Background logos with low opacity & grayscale using ::before pseudo */
-    .section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 50%;
-      opacity: 0.1;
-      filter: grayscale(100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .section.fusion::before {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Fusion360_logo.svg');
-    }
-
-    .section.onshape::before {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/10/Onshape_logo.svg');
-    }
-
-    .section.coding::before {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');
-    }
-
-    .section.about::before {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png');
-    }
-
-    .panel {
-      background-color: #c62828;
-      color: white;
-      width: 0%;
-      height: 100%;
-      position: relative; /* above the ::before background */
-      left: 0;
-      top: 0;
-      transition: width 1s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 2rem;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .panel-content {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      max-width: 600px;
-    }
-
-    .section.active .panel {
-      width: 100%;
-    }
-
-    .section.active .panel-content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .panel h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .panel p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .panel a {
-      display: inline-block;
-      background-color: white;
-      color: #c62828;
-      padding: 0.75rem 1.5rem;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-
-    .panel a:hover {
-      background-color: #fddede;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      padding: 2rem 1rem;
-      background-color: #f5f5f5;
-    }
-
-    @media (max-width: 768px) {
-      .panel h2 {
-        font-size: 1.6rem;
-      }
-
-      .panel p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -216,17 +60,35 @@
   <script>
     const sections = document.querySelectorAll('.section');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+    window.addEventListener('scroll', () => {
+      const viewportHeight = window.innerHeight;
+
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const sectionHeight = rect.height;
+
+        let progress = 0;
+
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          progress = (viewportHeight - rect.top) / (viewportHeight + sectionHeight);
+          progress = Math.min(Math.max(progress, 0), 1);
+        }
+
+        const panel = section.querySelector('.panel');
+        panel.style.width = (progress * 100) + '%';
+
+        const content = section.querySelector('.panel-content');
+        if (progress > 0.2) {
+          content.style.opacity = 1;
+          content.style.transform = 'translateY(0)';
         } else {
-          entry.target.classList.remove('active');
+          content.style.opacity = 0;
+          content.style.transform = 'translateY(20px)';
         }
       });
-    }, { threshold: 0.3 });
+    });
 
-    sections.forEach(section => observer.observe(section));
+    window.dispatchEvent(new Event('scroll'));
   </script>
 
 </body>
