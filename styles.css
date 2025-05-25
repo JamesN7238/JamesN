@@ -1,22 +1,20 @@
-/* Reset and base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  background-color: #fff;
-  color: #222;
+  scroll-snap-type: y mandatory;
 }
 
 body {
   background-color: #fff;
+  color: #222;
 }
 
 header {
@@ -29,18 +27,6 @@ header {
   padding: 3rem 1.5rem;
 }
 
-/* The global red progress fill bar */
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 8px;
-  width: 0%;  /* starts at zero */
-  background-color: #c62828; /* red */
-  z-index: 1000;
-  transition: width 0.15s ease-out;
-}
-
 header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
@@ -51,82 +37,72 @@ header p {
 }
 
 .section {
-  scroll-snap-align: start;
   height: 100vh;
+  scroll-snap-align: start;
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
-  filter: grayscale(100%);
-  opacity: 0.1;
   overflow: hidden;
-  display: block;
 }
 
 .panel {
+  background-color: #c62828;
+  color: white;
+  width: 0%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 2rem;
   text-align: center;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  white-space: normal;
-  pointer-events: none; /* prevent interaction when hidden */
+  transition: width 0.2s ease-out;
 }
 
 .panel-content {
-  position: relative;
-  max-width: 600px;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  max-width: 600px;
+  position: relative;
   z-index: 2;
-  pointer-events: auto; /* enable interaction */
-  color: #222;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgb(198 40 40 / 0.5);
 }
 
-.panel-content.visible {
+.section.active .panel-content {
   opacity: 1;
   transform: translateY(0);
 }
 
-.panel-content h2 {
+.panel h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #c62828;
 }
 
-.panel-content p {
+.panel p {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #555;
 }
 
-.panel-content a {
+.panel a {
   display: inline-block;
-  background-color: #c62828;
-  color: white;
+  background-color: white;
+  color: #c62828;
   padding: 0.75rem 1.5rem;
   font-weight: bold;
   text-decoration: none;
   border-radius: 8px;
   transition: background-color 0.3s;
+  position: relative;
+  z-index: 2;
 }
 
-.panel-content a:hover {
-  background-color: #b71c1c;
+.panel a:hover {
+  background-color: #fddede;
 }
 
 footer {
@@ -138,11 +114,11 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .panel-content h2 {
+  .panel h2 {
     font-size: 1.6rem;
   }
 
-  .panel-content p {
+  .panel p {
     font-size: 1rem;
   }
 }
