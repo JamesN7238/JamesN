@@ -11,16 +11,18 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background-color: #fff;
+      color: #222;
     }
 
     body {
       background: url('7cef05b1-a9ad-4459-adfa-248c3c84b3d9.png') center center / contain no-repeat fixed;
-      background-color: #fff;
-      color: #222;
     }
 
     header {
@@ -44,11 +46,70 @@
 
     .section {
       height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       overflow: hidden;
+    }
+
+    /* Background logos with low opacity & grayscale */
+    .section.fusion {
+      background-image: url('fusion-logo.png');
+      filter: grayscale(100%);
+      opacity: 0.1;
+    }
+
+    .section.onshape {
+      background-image: url('onshape-logo.png');
+      filter: grayscale(100%);
+      opacity: 0.1;
+    }
+
+    .section.coding {
+      background-image: url('python-logo.png');
+      filter: grayscale(100%);
+      opacity: 0.1;
+    }
+
+    .section.about {
+      background-image: url('about-logo.png');
+      filter: grayscale(100%);
+      opacity: 0.1;
+    }
+
+    /* To ensure background logo doesn’t affect panel or text, we use a pseudo-element */
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.1;
+      filter: grayscale(100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section.fusion::before {
+      background-image: url('fusion-logo.png');
+    }
+
+    .section.onshape::before {
+      background-image: url('onshape-logo.png');
+    }
+
+    .section.coding::before {
+      background-image: url('python-logo.png');
+    }
+
+    .section.about::before {
+      background-image: url('about-logo.png');
     }
 
     .panel {
@@ -56,7 +117,7 @@
       color: white;
       width: 0%;
       height: 100%;
-      position: absolute;
+      position: relative; /* above the ::before background */
       left: 0;
       top: 0;
       transition: width 1s ease;
@@ -136,7 +197,7 @@
     <p>Scroll down to explore my work</p>
   </header>
 
-  <section class="section">
+  <section class="section fusion">
     <div class="panel">
       <div class="panel-content">
         <h2>Fusion 360</h2>
@@ -146,7 +207,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section onshape">
     <div class="panel">
       <div class="panel-content">
         <h2>OnShape</h2>
@@ -156,7 +217,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section coding">
     <div class="panel">
       <div class="panel-content">
         <h2>Coding</h2>
@@ -166,7 +227,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section about">
     <div class="panel">
       <div class="panel-content">
         <h2>About Me</h2>
