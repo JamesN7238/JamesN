@@ -2,36 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Scroll Progress Test</title>
-  <style>
-    body, html {
-      margin: 0; padding: 0; height: 200vh; /* tall page */
-      font-family: Arial, sans-serif;
-    }
-    #scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 8px;
-      width: 0%;
-      background-color: #c62828;
-      z-index: 1000;
-      transition: width 0.15s ease-out;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>James Nanas' Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="scroll-progress"></div>
-  <h1 style="padding: 50px;">Scroll down to see progress bar fill</h1>
 
-  <script>
-    const progressBar = document.getElementById('scroll-progress');
+  <header>
+    <h1>James Nanas’ Portfolio</h1>
+    <p>Scroll down to explore my work</p>
+  </header>
 
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY || window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = Math.min(scrollTop / docHeight, 1);
-      progressBar.style.width = (scrollPercent * 100) + '%';
-    });
-  </script>
+  <section class="section fusion" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/54/Autodesk_Fusion_360_logo.svg');">
+    <div class="panel">
+      <div class="panel-content">
+        <h2>Fusion 360</h2>
+        <p>3D CAD/CAM software for product design & engineering</p>
+        <a href="fusion360.html">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section onshape" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Onshape_logo.svg');">
+    <div class="panel">
+      <div class="panel-content">
+        <h2>OnShape</h2>
+        <p>Cloud-native CAD with real-time collaboration tools</p>
+        <a href="onshape.html">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section coding" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');">
+    <div class="panel">
+      <div class="panel-content">
+        <h2>Coding</h2>
+        <p>Python, AI, embedded systems, and automation projects</p>
+        <a href="programming.html">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/89/User_icon_2.svg');">
+    <div class="panel">
+      <div class="panel-content">
+        <h2>About Me</h2>
+        <p>Get to know more about my background and goals</p>
+        <a href="about.html">View Page</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 James Nanas · Built with ❤️ using GitHub Pages
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
