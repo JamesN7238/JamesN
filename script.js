@@ -1,21 +1,28 @@
-const sections = document.querySelectorAll('.section');
+// This script assumes each .section has a .panel inside it
 
-window.addEventListener('scroll', () => {
-  const viewportHeight = window.innerHeight;
+function updatePanelsOnScroll() {
+  const sections = document.querySelectorAll('.section');
+  const windowHeight = window.innerHeight;
 
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
     const panel = section.querySelector('.panel');
 
-    let progress = 1 - rect.top / viewportHeight;
-    progress = Math.min(Math.max(progress, 0), 1);
-
-    panel.style.width = (progress * 100) + '%';
-
-    if (progress > 0.1) {
-      section.classList.add('active');
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      // Section is in view
+      const sectionHeight = rect.height;
+      const visibleTop = Math.max(0, -rect.top);
+      const visibleBottom = Math.min(sectionHeight, windowHeight - rect.top);
+      const visibleHeight = visibleBottom - visibleTop;
+      const percent = Math.max(0, Math.min(1, visibleBottom / sectionHeight));
+      panel.style.width = (percent * 100) + '%';
     } else {
-      section.classList.remove('active');
+      // Section is not in view
+      panel.style.width = '0%';
     }
   });
-});
+}
+
+window.addEventListener('scroll', updatePanelsOnScroll);
+window.addEventListener('resize', updatePanelsOnScroll);
+document.addEventListener('DOMContentLoaded', updatePanelsOnScroll);
