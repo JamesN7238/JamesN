@@ -5,9 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>James Nanas' Portfolio</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    section {
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: #fff;
       color: #222;
     }
@@ -15,77 +33,56 @@
     header {
       background-color: #c62828;
       color: white;
-      padding: 2rem 1rem;
       text-align: center;
+      padding: 4rem 2rem;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.2rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #222;
-      border-radius: 12px;
-      position: relative;
-      padding: 1.5rem 1rem;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 0;
-      height: 100%;
-      background-color: rgba(198, 40, 40, 0.1);
-      z-index: 0;
-      transition: width 0.4s ease;
-    }
-
-    .card:hover::before {
-      width: 100%;
-    }
-
-    .card-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .card img {
-      width: 60px;
-      height: auto;
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
 
-    .card h2 {
+    header p {
       font-size: 1.2rem;
-      margin: 0;
+    }
+
+    .panel {
+      position: absolute;
+      left: -100%;
+      height: 100%;
+      width: 50%;
+      background-color: #c62828;
+      transition: left 1s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 2rem;
+      color: white;
+    }
+
+    section.active .panel {
+      left: 0;
+    }
+
+    .panel h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .panel a {
+      display: inline-block;
+      background-color: white;
+      color: #c62828;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+      margin-top: 1rem;
+    }
+
+    .panel a:hover {
+      background-color: #fddede;
     }
 
     footer {
@@ -93,6 +90,7 @@
       font-size: 0.9rem;
       color: #777;
       padding: 2rem 1rem;
+      background: #f5f5f5;
     }
   </style>
 </head>
@@ -100,42 +98,65 @@
 
   <header>
     <h1>James Nanas’ Portfolio</h1>
-    <p>Explore all of my projects below!</p>
+    <p>Scroll down to explore my work</p>
   </header>
 
-  <main class="grid">
-    <a href="about.html" class="card">
-      <div class="card-content">
-        <img src="https://img.icons8.com/ios-filled/100/user.png" alt="About Me" />
-        <h2>About Me</h2>
-      </div>
-    </a>
+  <section id="fusion360">
+    <div class="panel">
+      <h2>Fusion 360</h2>
+      <p>3D CAD/CAM software for product design & engineering</p>
+      <a href="fusion360.html">View Project</a>
+    </div>
+  </section>
 
-    <a href="fusion360.html" class="card">
-      <div class="card-content">
-        <img src="https://avatars.githubusercontent.com/u/11999539?s=280&v=4" alt="Fusion 360" />
-        <h2>Fusion 360</h2>
-      </div>
-    </a>
+  <section id="onshape">
+    <div class="panel">
+      <h2>OnShape</h2>
+      <p>Cloud-native CAD with collaboration tools</p>
+      <a href="onshape.html">View Project</a>
+    </div>
+  </section>
 
-    <a href="onshape.html" class="card">
-      <div class="card-content">
-        <img src="https://us.v-cdn.net/5022071/uploads/V3B85DTZQS8W/box-onshape-favicon-512-401x.png" alt="OnShape" />
-        <h2>OnShape</h2>
-      </div>
-    </a>
+  <section id="coding">
+    <div class="panel">
+      <h2>Coding</h2>
+      <p>Python, AI, embedded systems, and more</p>
+      <a href="programming.html">View Project</a>
+    </div>
+  </section>
 
-    <a href="programming.html" class="card">
-      <div class="card-content">
-        <img src="https://img.icons8.com/color/96/python--v1.png" alt="Coding" />
-        <h2>Coding</h2>
-      </div>
-    </a>
-  </main>
+  <section id="about">
+    <div class="panel">
+      <h2>About Me</h2>
+      <p>Learn more about my background and goals</p>
+      <a href="about.html">View Page</a>
+    </div>
+  </section>
 
   <footer>
     © 2025 James Nanas · Built with ❤️ using GitHub Pages
   </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 
 </body>
 </html>
