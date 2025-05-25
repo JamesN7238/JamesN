@@ -1,10 +1,12 @@
-body {
+body, html {
   margin: 0;
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
   color: #222;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .section {
@@ -14,4 +16,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
