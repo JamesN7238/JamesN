@@ -59,16 +59,17 @@ header p {
   opacity: 1;
 }
 
-/* Background symbols */
+/* Background symbols with higher visibility */
 .section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-size: 60%;
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.05;
+  opacity: 0.15;
   z-index: 0;
+  filter: blur(1px); /* Soft blur */
 }
 
 .fusion::before {
