@@ -85,7 +85,7 @@ header p {
 }
 
 .about::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/99/User_icon_2.svg');
+  background-image: url('https://img.icons8.com/ios-filled/100/user.png');
 }
 
 /* Panel text */
