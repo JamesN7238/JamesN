@@ -68,10 +68,10 @@ header p {
   content: "";
   position: absolute;
   inset: 0;
-  background-size: 80%;
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.15;
+  opacity: 0.5;
   z-index: 0;
   filter: blur(1px);
   transition: opacity 0.5s ease, background-size 0.5s ease;
