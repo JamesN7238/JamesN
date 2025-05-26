@@ -1,24 +1,20 @@
-function updatePanelsOnScroll() {
-  const sections = document.querySelectorAll('.section');
-  const windowHeight = window.innerHeight;
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".section");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.5
+    }
+  );
 
   sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    const panel = section.querySelector('.panel');
-
-    if (rect.top < windowHeight && rect.bottom > 0) {
-      const sectionHeight = rect.height;
-      const visibleTop = Math.max(0, -rect.top);
-      const visibleBottom = Math.min(sectionHeight, windowHeight - rect.top);
-      const visibleHeight = visibleBottom - visibleTop;
-      const percent = Math.max(0, Math.min(1, visibleBottom / sectionHeight));
-      panel.style.width = (percent * 100) + '%';
-    } else {
-      panel.style.width = '0%';
-    }
+    observer.observe(section);
   });
-}
-
-window.addEventListener('scroll', updatePanelsOnScroll);
-window.addEventListener('resize', updatePanelsOnScroll);
-document.addEventListener('DOMContentLoaded', updatePanelsOnScroll);
+});
