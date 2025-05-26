@@ -1,4 +1,4 @@
-/* Reset & base styles */
+/* Base Reset */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,6 +8,7 @@ body {
   color: #222;
 }
 
+/* Header */
 header {
   background-color: #c62828;
   color: white;
@@ -16,19 +17,22 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+  transition: padding 0.3s ease;
 }
 
 header h1 {
   margin: 0;
   font-size: 2.5rem;
+  transition: font-size 0.3s ease;
 }
 
 header p {
   margin-top: 0.5rem;
   font-size: 1.2rem;
+  transition: font-size 0.3s ease;
 }
 
-/* Scrollable section */
+/* Sections */
 .section {
   height: 100vh;
   scroll-snap-align: start;
@@ -40,16 +44,16 @@ header p {
   overflow: hidden;
 }
 
-/* Red panel */
+/* Red Slide-In Panel */
 .panel {
   background-color: #c62828;
   color: white;
   padding: 2rem;
   border-radius: 12px;
   max-width: 400px;
-  transform: translateX(-100%);
+  transform: translateX(-80%);
   opacity: 0;
-  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+  transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 1s ease;
   position: relative;
   z-index: 1;
 }
@@ -59,46 +63,43 @@ header p {
   opacity: 1;
 }
 
-/* Background symbols with higher visibility */
+/* Background Logo */
 .section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-size: 25%;
+  background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.5;
+  opacity: 0.15;
   z-index: 0;
-  filter: blur(1px); /* Soft blur */
+  filter: blur(1px);
+  transition: opacity 0.5s ease, background-size 0.5s ease;
 }
 
+/* Background Variants */
 .fusion::before {
   background-image: url('https://tse4.mm.bing.net/th/id/OIP.whHMSrseH_JcMUnjlaqV1gAAAA?cb=iwc2&rs=1&pid=ImgDetMain');
 }
-
 .onshape::before {
   background-image: url('https://us.v-cdn.net/5022071/uploads/V3B85DTZQS8W/box-onshape-favicon-512-401x.png');
 }
-
 .coding::before {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');
 }
-
 .about::before {
   background-image: url('https://img.icons8.com/ios-filled/100/user.png');
 }
 
-/* Panel text */
+/* Panel Content */
 .panel-content h2 {
   margin: 0 0 0.5rem;
   font-size: 1.8rem;
 }
-
 .panel-content p {
   margin: 0 0 1rem;
   font-size: 1rem;
 }
-
 .panel-content a {
   display: inline-block;
   background-color: white;
@@ -109,14 +110,65 @@ header p {
   font-weight: bold;
   transition: background-color 0.3s;
 }
-
 .panel-content a:hover {
   background-color: #fdd;
 }
 
+/* Footer */
 footer {
   text-align: center;
   font-size: 0.9rem;
   color: #777;
   padding: 2rem 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .panel {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  .section {
+    padding-left: 1rem;
+  }
+
+  .section::before {
+    background-size: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+  }
+
+  .panel-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .panel-content p {
+    font-size: 0.9rem;
+  }
+
+  .panel-content a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
 }
