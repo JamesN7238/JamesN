@@ -1,102 +1,116 @@
-* {
+/* Reset & base styles */
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
-  scroll-behavior: smooth;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  background-color: #fff;
+  color: #222;
 }
 
 header {
+  background-color: #c62828;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #c62828;
-  color: white;
-  text-align: center;
-  padding: 3rem 1.5rem;
 }
 
 header h1 {
+  margin: 0;
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
 }
 
 header p {
+  margin-top: 0.5rem;
   font-size: 1.2rem;
 }
 
+/* Scrollable section */
 .section {
   height: 100vh;
+  scroll-snap-align: start;
   position: relative;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%;
-  filter: grayscale(100%) opacity(0.1);
-}
-
-.panel {
-  background-color: #c62828;
-  width: 0%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: width 0.2s ease-out;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2rem;
-  text-align: center;
-  z-index: 1;
+  justify-content: flex-start;
+  padding-left: 2rem;
   overflow: hidden;
 }
 
-.panel-content {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  max-width: 600px;
-  z-index: 2;
-  position: relative;
+/* Red panel */
+.panel {
+  background-color: #c62828;
   color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
-.section.active .panel-content {
-  height: 100vh;
+.section.visible .panel {
+  transform: translateX(0);
   opacity: 1;
-  transform: translateY(0);
 }
 
-.panel h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+/* Background symbols */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05;
+  z-index: 0;
 }
 
-.panel p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+.fusion::before {
+  background-image: url('https://avatars.githubusercontent.com/u/11999539?s=280&v=4');
 }
 
-.panel a {
+.onshape::before {
+  background-image: url('https://us.v-cdn.net/5022071/uploads/V3B85DTZQS8W/box-onshape-favicon-512-401x.png');
+}
+
+.coding::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg');
+}
+
+.about::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/99/User_icon_2.svg');
+}
+
+/* Panel text */
+.panel-content h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+.panel-content p {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+
+.panel-content a {
   display: inline-block;
   background-color: white;
   color: #c62828;
-  padding: 0.75rem 1.5rem;
-  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: 8px;
+  font-weight: bold;
   transition: background-color 0.3s;
 }
 
-.panel a:hover {
-  background-color: #fddede;
+.panel-content a:hover {
+  background-color: #fdd;
 }
 
 footer {
@@ -104,15 +118,4 @@ footer {
   font-size: 0.9rem;
   color: #777;
   padding: 2rem 1rem;
-  background-color: #f5f5f5;
-}
-
-@media (max-width: 768px) {
-  .panel h2 {
-    font-size: 1.6rem;
-  }
-
-  .panel p {
-    font-size: 1rem;
-  }
 }
