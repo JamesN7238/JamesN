@@ -46,15 +46,26 @@
       transform: scale(1.05);
     }
 
+    .project-wrapper {
+      background-color: #c62828;
+      color: white;
+      padding: 4rem 2rem;
+    }
+
     .project-section {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 3rem;
-      gap: 1.5rem;
-      background-color: #c62828;
-      color: white;
-      padding: 2rem;
-      border-radius: 10px;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .project-section.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .project-images {
@@ -86,14 +97,11 @@
       .project-section {
         flex-direction: column;
         align-items: center;
+        text-align: center;
       }
 
       .project-images img {
         max-width: 90%;
-      }
-
-      .project-description {
-        text-align: center;
       }
     }
   </style>
@@ -107,11 +115,14 @@
     <p>
       This is my Fusion360 page where I will showcase all of my works.
     </p>
+  </main>
 
-    <section class="project-section">
+  <!-- Red full-width section -->
+  <section class="project-wrapper">
+    <div class="project-section" id="turbofan-project">
       <div class="project-images">
-        <img src="Jet_Engine1.png" alt="Jet Engine View 1">
-        <img src="Jet_Engine2.png" alt="Jet Engine View 2">
+        <img src="Jet_Engine1.PNG" alt="Jet Engine View 1">
+        <img src="Jet_Engine2.PNG" alt="Jet Engine View 2">
       </div>
       <div class="project-description">
         <h2>Demo Turbofan Engine</h2>
@@ -119,13 +130,29 @@
           This project is a conceptual CAD model of a turbofan jet engine designed in Fusion 360. It highlights key components such as the fan, compressor, and turbine stages with detailed geometry intended to represent a realistic airflow path and housing design. This was my first major attempt at assembling multiple mechanical systems into a unified model, focusing on structural layout and internal clearance.
         </p>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <main>
     <a href="index.html" class="btn">← Back to Home</a>
   </main>
 
   <footer>
     © 2025 JamesN
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    observer.observe(document.getElementById('turbofan-project'));
+  </script>
 </body>
 </html>
