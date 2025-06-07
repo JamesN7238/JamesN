@@ -21,15 +21,9 @@
       letter-spacing: 1px;
     }
 
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
     .btn {
       display: inline-block;
-      margin-top: 2rem;
+      margin: 2rem auto;
       padding: 0.8rem 1.5rem;
       background-color: white;
       color: #c62828;
@@ -38,6 +32,7 @@
       text-decoration: none;
       font-size: 1rem;
       transition: all 0.3s ease;
+      text-align: center;
     }
 
     .btn:hover {
@@ -46,26 +41,100 @@
       transform: scale(1.05);
     }
 
+    .project-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 2rem;
+      animation: flyUp 1s ease both;
+      width: 100%;
+    }
+
+    .section-red {
+      background-color: #c62828;
+      color: white;
+    }
+
+    .section-white {
+      background-color: #fff;
+      color: #222;
+    }
+
+    .project-content {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .project-media {
+      flex: 1 1 45%;
+    }
+
+    .project-media img,
+    .project-media video {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-text {
+      flex: 1 1 45%;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
     footer {
-      margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
       color: #777;
+      margin-top: 3rem;
+      padding-bottom: 2rem;
+    }
+
+    @keyframes flyUp {
+      from {
+        transform: translateY(60px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    About Me
+    Projects
   </header>
 
-  <main>
-    <p>
-      This is where I will showcase my personal projects and school projects.
-    </p>
+  <section class="project-section section-red">
+    <div class="project-content">
+      <div class="project-media">
+        <img src="RNG_Image.JPG" alt="Random Number Generator Image" />
+        <video controls style="margin-top: 1rem;">
+          <source src="RNG_Vid.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="project-text">
+        <h2>Random Number Generator</h2>
+        <p>
+          I worked with a partner to design and build a Random Number Generator using an NE555 timer and binary counter. 
+          We started by designing the schematic in Multisim, then soldered and tested the circuit on a custom PCB board.
+          The result was a fully functioning number generator with LEDs that display a random 3-bit number each time the circuit is triggered.
+        </p>
+      </div>
+    </div>
+  </section>
 
+  <div class="btn-wrapper" style="text-align: center;">
     <a href="index.html" class="btn">← Back to Home</a>
-  </main>
+  </div>
 
   <footer>
     © 2025 JamesN
