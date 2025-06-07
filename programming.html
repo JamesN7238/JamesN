@@ -23,7 +23,7 @@
 
     main {
       padding: 2rem;
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -46,29 +46,177 @@
       transform: scale(1.05);
     }
 
+    .project-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .project-wrapper:nth-child(even) {
+      background-color: #ffffff;
+      color: #222;
+    }
+
+    .project-wrapper:nth-child(odd) {
+      background-color: #c62828;
+      color: white;
+    }
+
+    .project-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-description {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .project-description h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    .project-description p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .project-video {
+      flex: 1;
+      min-width: 280px;
+      max-width: 480px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
     footer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
       color: #777;
     }
+
+    @media (max-width: 768px) {
+      .project-section {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    About Me
+    Coding Projects
   </header>
 
   <main>
     <p>
-      This is where I will showcase my coding projects where I used languages like Python and C++ for Arduinos.
+      This is where I showcase my coding projects where I used languages like Python and C++ for Arduinos.
     </p>
+  </main>
 
+  <section class="project-wrapper">
+    <div class="project-section">
+      <div class="project-description">
+        <h2>This Website</h2>
+        <p>
+          I built this website portfolio using HTML, CSS, and JavaScript. It’s hosted on GitHub Pages, allowing me to fully control and showcase my projects with smooth transitions, responsive design, and custom animations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-wrapper">
+    <div class="project-section">
+      <div class="project-description">
+        <h2>Jarvis</h2>
+        <p>
+          Jarvis is my personal AI assistant inspired by Tony Stark’s JARVIS. It includes voice control, live scheduling, and a futuristic UI. The interface is fully editable and controlled by the AI in real time.
+        </p>
+      </div>
+      <div class="project-video">
+        <video controls>
+          <source src="Jarvis_Vid.mkv" type="video/x-matroska" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-wrapper">
+    <div class="project-section">
+      <div class="project-description">
+        <h2>AI Chatbot</h2>
+        <p>
+          I created a chatbot using Ollama and LLaMA 3. It runs entirely on my own machine and can have full conversations, understand voice input, and provide contextual responses using advanced local inference.
+        </p>
+      </div>
+      <div class="project-video">
+        <video controls>
+          <source src="AI_Chatbot_Vid.mkv" type="video/x-matroska" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-wrapper">
+    <div class="project-section">
+      <div class="project-description">
+        <h2>Arduino Motion Tracker</h2>
+        <p>
+          I connected an accelerometer to an Arduino to create a motion tracking system. The movement is streamed to my laptop in real time and visualized using Python and Processing for a seamless hardware-to-software bridge.
+        </p>
+      </div>
+      <div class="project-video">
+        <video controls>
+          <source src="Motion_Tracker.MOV" type="video/quicktime" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <main>
     <a href="index.html" class="btn">← Back to Home</a>
   </main>
 
   <footer>
-    © 2025 JamesN
+    Made with Github pages.
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    document.querySelectorAll('.project-wrapper').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
