@@ -113,15 +113,20 @@
   </header>
 
   <section class="project-section section-red">
-    <div class="project-content" style="flex-direction: column;">
-      <div class="project-media" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <img src="RNG_Image.JPG" alt="Random Number Generator Image" style="max-width: 48%;" />
-        <video controls style="max-width: 48%;">
+    <div class="project-content" style="flex-direction: row; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+    
+      <div class="project-media" style="flex: 0 1 25%;">
+        <img src="RNG_Image.JPG" alt="Random Number Generator Image" style="width: 100%; border-radius: 8px;" />
+      </div>
+
+      <div class="project-media" style="flex: 0 1 25%;">
+        <video controls style="width: 100%; border-radius: 8px;">
           <source src="RNG_Vid.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
-      <div class="project-text" style="max-width: 600px; margin-top: 2rem;">
+
+      <div class="project-text" style="flex: 0 1 40%; min-width: 250px;">
         <h2>Random Number Generator</h2>
         <p>
           I worked with a partner to design and build a Random Number Generator using an NE555 timer and binary counter.
@@ -129,6 +134,7 @@
           The result was a fully functioning number generator with LEDs that display a random 3-bit number each time the circuit is triggered.
         </p>
       </div>
+
     </div>
   </section>
 
