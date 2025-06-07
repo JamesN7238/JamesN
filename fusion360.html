@@ -50,6 +50,14 @@
       background-color: #c62828;
       color: white;
       padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .project-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .project-section {
@@ -58,14 +66,6 @@
       gap: 2rem;
       max-width: 1000px;
       margin: 0 auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
-
-    .project-section.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .project-images {
@@ -117,9 +117,8 @@
     </p>
   </main>
 
-  <!-- Red full-width section -->
-  <section class="project-wrapper">
-    <div class="project-section" id="turbofan-project">
+  <section class="project-wrapper" id="project-flyup">
+    <div class="project-section">
       <div class="project-images">
         <img src="Jet_Engine1.PNG" alt="Jet Engine View 1">
         <img src="Jet_Engine2.PNG" alt="Jet Engine View 2">
@@ -149,10 +148,10 @@
         }
       });
     }, {
-      threshold: 0.3
+      threshold: 0.2
     });
 
-    observer.observe(document.getElementById('turbofan-project'));
+    observer.observe(document.getElementById('project-flyup'));
   </script>
 </body>
 </html>
