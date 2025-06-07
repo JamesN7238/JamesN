@@ -23,7 +23,7 @@
 
     main {
       padding: 2rem;
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -46,29 +46,112 @@
       transform: scale(1.05);
     }
 
+    .project-wrapper {
+      background-color: #c62828;
+      color: white;
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .project-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .project-images {
+      flex: 1 1 250px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-images img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-description {
+      flex: 2 1 400px;
+    }
+
     footer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
       color: #777;
     }
+
+    @media (max-width: 768px) {
+      .project-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .project-images img {
+        max-width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    About Me
+    OnShape Projects
   </header>
 
   <main>
     <p>
       This is where I will showcase my OnShape designs.
     </p>
+  </main>
 
+  <section class="project-wrapper" id="onshape-project">
+    <div class="project-section">
+      <div class="project-images">
+        <img src="Toy_Train1.png" alt="Toy Train View 1">
+        <img src="Toy_Train2.png" alt="Toy Train View 2">
+      </div>
+      <div class="project-description">
+        <h2>Toy Train Project</h2>
+        <p>
+          This project is a CAD design of a toy train and was built using OnShape. It demonstrates use of the core features such as extrusions, revolves, and assemblies. The toy train design taught me constraint-based modeling and how to manage part relationships within OnShape assemblies.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
     <a href="index.html" class="btn">← Back to Home</a>
   </main>
 
   <footer>
-    © 2025 JamesN
+    Made using Github pages.
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    observer.observe(document.getElementById('onshape-project'));
+  </script>
 </body>
 </html>
