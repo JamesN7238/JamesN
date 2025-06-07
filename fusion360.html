@@ -23,7 +23,7 @@
 
     main {
       padding: 2rem;
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -46,11 +46,41 @@
       transform: scale(1.05);
     }
 
+    .project-section {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      gap: 1.5rem;
+    }
+
+    .project-images {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-images img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .project-description {
+      flex: 2 1 400px;
+    }
+
     footer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
       color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .project-section {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -61,8 +91,21 @@
 
   <main>
     <p>
-      This is my fusion360 page where I will showcase all of my works.
+      This is my Fusion360 page where I will showcase all of my works.
     </p>
+
+    <section class="project-section">
+      <div class="project-images">
+        <img src="Jet_Engine1.PNG" alt="Jet Engine View 1">
+        <img src="Jet_Engine2.PNG" alt="Jet Engine View 2">
+      </div>
+      <div class="project-description">
+        <h2>Demo Turbofan Engine</h2>
+        <p>
+          This project is a conceptual CAD model of a turbofan jet engine designed in Fusion 360. It highlights key components such as the fan, compressor, and turbine stages with detailed geometry intended to represent a realistic airflow path and housing design. This was my first major attempt at assembling multiple mechanical systems into a unified model, focusing on structural layout and internal clearance.
+        </p>
+      </div>
+    </section>
 
     <a href="index.html" class="btn">← Back to Home</a>
   </main>
