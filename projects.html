@@ -113,18 +113,18 @@
   </header>
 
   <section class="project-section section-red">
-    <div class="project-content">
-      <div class="project-media">
-        <img src="RNG_Image.JPG" alt="Random Number Generator Image" />
-        <video controls style="margin-top: 1rem;">
+    <div class="project-content" style="flex-direction: column;">
+      <div class="project-media" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <img src="RNG_Image.JPG" alt="Random Number Generator Image" style="max-width: 48%;" />
+        <video controls style="max-width: 48%;">
           <source src="RNG_Vid.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
-      <div class="project-text">
+      <div class="project-text" style="max-width: 600px; margin-top: 2rem;">
         <h2>Random Number Generator</h2>
         <p>
-          I worked with a partner to design and build a Random Number Generator using an NE555 timer and binary counter. 
+          I worked with a partner to design and build a Random Number Generator using an NE555 timer and binary counter.
           We started by designing the schematic in Multisim, then soldered and tested the circuit on a custom PCB board.
           The result was a fully functioning number generator with LEDs that display a random 3-bit number each time the circuit is triggered.
         </p>
