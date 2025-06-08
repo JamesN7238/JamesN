@@ -166,3 +166,12 @@ footer {
     padding: 0.4rem 0.8rem;
   }
 }
+
+.portrait-img {
+  display: block;
+  margin: 2rem auto;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
