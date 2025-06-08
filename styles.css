@@ -175,3 +175,20 @@ footer {
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+.caption-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.lego-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.caption {
+  font-style: italic;
+  color: #555;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
