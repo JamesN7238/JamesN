@@ -55,6 +55,16 @@
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
 
+    .project-wrapper:nth-child(even) {
+      background-color: #ffffff;
+      color: #222;
+    }
+
+    .project-wrapper:nth-child(odd) {
+      background-color: #c62828;
+      color: white;
+    }
+
     .project-wrapper.show {
       opacity: 1;
       transform: translateY(0);
@@ -110,12 +120,6 @@
   <header>
     OnShape Projects
   </header>
-
-  <main>
-    <p>
-      This is where I will showcase my OnShape designs.
-    </p>
-  </main>
 
   <section class="project-wrapper" id="onshape-project">
     <div class="project-section">
